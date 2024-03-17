@@ -132,6 +132,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-ALLOWED_HOSTS = ['https://myproj-antf.onrender.com','198.211.99.20', 'localhost', '127.0.0.1','localhost:8000']
+ALLOWED_HOSTS = ['myproj-antf.onrender.com','198.211.99.20', 'localhost', '127.0.0.1','localhost:8000']
 #for testing email server
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
