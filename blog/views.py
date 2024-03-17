@@ -5,6 +5,9 @@ from django.core.paginator import Paginator, EmptyPage,\
                                   PageNotAnInteger
 from .forms import EmailPostForm
 from django.core.mail import send_mail
+import os
+from dotenv import load_dotenv
+load_dotenv()
 #Class based view for posts lists
 class PostListView(ListView):
   queryset = Post.published_posts.all()
@@ -47,7 +50,8 @@ def post_share(request,post_id):
                 f"{post.title}"
       message = f"Read {post.title} at {post_url}\n\n"\
                 f"{cd['name']}\'s comments:{cd['comments']}"
-      send_mail(subject,message,'usamanadeem0786@gmail.com',[cd['to']])
+
+      send_mail(subject,message,os.environ.get('EMAIL'),[cd['to']])
       sent = True
   else:
     sent=False
