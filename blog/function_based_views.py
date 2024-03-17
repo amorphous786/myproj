@@ -1,16 +1,11 @@
-from django.views.generic import ListView
-from .models import Post
 from django.shortcuts import render,get_object_or_404
+from blog.models import Post
+from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage,\
                                   PageNotAnInteger
-from .forms import EmailPostForm
-#Class based view for posts lists
-class PostListView(ListView):
-  queryset = Post.published_posts.all()
-  context_object_name = "posts"
-  paginate_by = 3
-  template_name = 'blog/post/list.html'
-# function based view for posts lists
+# Create your views here.
+
+
 def post_list(request):
   posts_list = Post.objects.all()
   paginator = Paginator(posts_list,5)
@@ -25,6 +20,13 @@ def post_list(request):
   return render(request,'blog/post/list.html',{'posts':posts})
 
 def post_detail(request,year,month,day,post):
+  # try:
+  #   post = Post.objects.get(id=id)
+  # except Post.DoesNotExist:
+  #   raise Http404
+  # return render(request,
+  #               'blog/post/detail.html',
+  #               {'post':post})
   post = get_object_or_404(Post,
                            status=Post.Status.PUBLISHED,
                            slug=post,
@@ -35,12 +37,3 @@ def post_detail(request,year,month,day,post):
                 'blog/post/detail.html',
                 {'post':post})
 
-def post_share(request,post_id):
-  post = get_object_or_404(Post,id=post_id,status=Post.Status.PUBLISHED)
-  if request.method=='POST':
-    form = EmailPostForm(request.POST)
-    if form.is_valid():
-      cd = form.cleaned_data 
-  else:
-    form = EmailPostForm()
-  return render(request,'blog/post/share.html',{'post':post,'form':form})
