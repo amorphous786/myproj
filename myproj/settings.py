@@ -133,12 +133,12 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.environ.get('EMAIL')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True if os.environ.get('DEBUG') else False 
+EMAIL_USE_TLS = True 
 
 ALLOWED_HOSTS = ['myproj-antf.onrender.com','198.211.99.20', 'localhost', '127.0.0.1','localhost:8000']
 #for testing email server
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+DEBUG = True if os.environ.get('DEBUG') else False 
 if not DEBUG:
     # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
