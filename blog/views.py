@@ -19,7 +19,6 @@ def post_list(request):
   posts_list = Post.objects.all()
   paginator = Paginator(posts_list,5)
   page_number = request.GET.get('page',1)
-  breakpoint()
   try:
     posts = paginator.page(page_number)
   except EmptyPage:
