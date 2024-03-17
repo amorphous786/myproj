@@ -123,3 +123,11 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TEMPLATE_DEBUG=True
+#EMAIL SERVER CONFIGURATION
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'usamanadeem0786@gmail.com'
+EMAIL_HOST_PASSWORD = 'mbzxjcdafdnkyhxk'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+#for testing email server
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
