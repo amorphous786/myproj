@@ -9,17 +9,17 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 #Class based view for posts lists
-class PostListView(ListView):
-  queryset = Post.published_posts.all()
-  context_object_name = "posts"
-  paginate_by = 3
-  template_name = 'blog/post/list.html'
+# class PostListView(ListView):
+#   queryset = Post.published_posts.all()
+#   context_object_name = "posts"
+#   paginate_by = 3
+#   template_name = 'blog/post/list.html'
 # function based view for posts lists
 def post_list(request):
   posts_list = Post.objects.all()
   paginator = Paginator(posts_list,5)
   page_number = request.GET.get('page',1)
-  # breakpoint()
+  breakpoint()
   try:
     posts = paginator.page(page_number)
   except EmptyPage:
